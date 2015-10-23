@@ -56,37 +56,35 @@ public class PlayerController : MonoBehaviour {
 						forceX = this.speed;
 						this._isFacingRight = true;
 						this._flip ();
-						//make sure he is facing right
 					}
-				}
-				
-				else if(this._movingValue<0){
+				} else if (this._movingValue < 0) {
 					// move left
-					if(absVelX < this.velocityRange.vMax) 
-					{
+					if (absVelX < this.velocityRange.vMax) {
 						forceX = -this.speed;
 						this._isFacingRight = false;
-						this._flip();
+						this._flip ();
 					}
 				}
 			}
-			this._animator.SetInteger ("AnimState", 0);
+			} else {
+				this._animator.SetInteger ("AnimState", 0);
 			
-		}
+			}
 		
-		//check if player is jumping 
-		if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) {
-			if (this._isGrounded) {
-				this._animator.SetInteger ("AnimState", 2);
-				if (absVelY < this.velocityRange.vMax) {
-					forceY = this.jump;
-					this._isGrounded =false;
+			//check if player is jumping 
+			if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) {
+				if (this._isGrounded) {
+					this._animator.SetInteger ("AnimState", 2);
+					if (absVelY < this.velocityRange.vMax) {
+						forceY = this.jump;
+						this._isGrounded = false;
+					}
 				}
 			}
+			//add force to push the player
+			this._rigidbody2D.AddForce (new Vector2 (forceX, forceY));
 		}
-		//add force to push the player
-		this._rigidbody2D.AddForce (new Vector2 (forceX, forceY));
-	}
+	
 
 
 	void OnCollisionStay2D(Collision2D otherCollider){				// check if grounded CollisionStay

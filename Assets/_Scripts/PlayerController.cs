@@ -72,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 			}
 		
 			//check if player is jumping 
-			if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) {
+			if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) { // add linecast for jump so it checks for the bottom of the foot.
 				if (this._isGrounded) {
 					this._animator.SetInteger ("AnimState", 2);
 					if (absVelY < this.velocityRange.vMax) {

@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
 	//Public INSTANCES
 	public float speed = 50f;
 	public float jump = 500f;
+	public Transform sightStart;	//LINECASTING start
+	public Transform sightEnd;		//LINECASTING end
 
 	public VelocityRange velocityRange = new VelocityRange (300f, 1000f);
 
@@ -27,6 +29,7 @@ public class PlayerController : MonoBehaviour {
 	private float _movingValue = 0;
 	private bool _isFacingRight =true;
 	private bool _isGrounded = true;
+	private bool _isGroundBelow = false;	//LINECASTING 
 
 	// Use this for initialization
 	void Start () {
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour {
 		if (this._movingValue != 0) {
 			//check if player is grounded
 			if (this._isGrounded) {
+				//change animation to 1, 1 was set to Player Run Animation
 				this._animator.SetInteger ("AnimState", 1);
 				if (this._movingValue > 0) {
 					//move right
@@ -67,18 +71,28 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 			} else {
+				// 0 was set to Player Idle Animation
 				this._animator.SetInteger ("AnimState", 0);
 			
 			}
 		
 			//check if player is jumping 
-			if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) { // add linecast for jump so it checks for the bottom of the foot.
+			if ((Input.GetKey ("up") || Input.GetKey (KeyCode.W))) { 
 				if (this._isGrounded) {
+					// 2 was set to Player Jump Animation
 					this._animator.SetInteger ("AnimState", 2);
+					//line cast added so the player does not shoot up into the air when its touching a wall.
+					this._isGroundBelow = Physics2D.Linecast(this.sightStart.position, this.sightEnd.position, 1 << LayerMask.NameToLayer ("Ground")); 
+					Debug.DrawLine(this.sightStart.position,this.sightEnd.position); //draws a line in debug mode to see if linecasting works
+
+					//if there is ground below then allow the jump and make the player not grounded anymore.
+					if(_isGroundBelow == true){ 
 					if (absVelY < this.velocityRange.vMax) {
 						forceY = this.jump;
 						this._isGrounded = false;
 					}
+				}
+					
 				}
 			}
 			//add force to push the player
@@ -100,6 +114,7 @@ public class PlayerController : MonoBehaviour {
 	}*/
 
 	//private methods
+	//flips the character when you face the other way.
 	private void _flip(){
 	if (this._isFacingRight) {
 			this._transform.localScale = new Vector3 (1f, 1f, 1f);

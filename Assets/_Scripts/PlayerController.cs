@@ -21,21 +21,23 @@ public class PlayerController : MonoBehaviour {
 
 	public VelocityRange velocityRange = new VelocityRange (300f, 1000f);
 
-	public GameObject playerArrow;
+	public GameObject rightArrow;			//GAMEOBJECTS for Firing Arrow
+	public GameObject leftArrow;
 	public GameObject arrowPosition;
-	public float fireRate;
+
 
 	//Private INSTANCES
-	private Rigidbody2D _rigidbody2D; 
+	private Rigidbody2D _rigidbody2D; 		//REFERENCES
 	private Transform _transform;
 	private Animator _animator; 
 
-	private float _movingValue = 0;
+	private float _movingValue = 0;			//LINECASTING Checks and movement
 	private bool _isFacingRight =true;
 	private bool _isGrounded = true;
-	private bool _isGroundBelow = false;	//LINECASTING 
+	private bool _isGroundBelow = false;	
 
-	private float nextFire;
+	public float fireRate;					//Firing arrow configurations
+	private float nextFire;					
 
 	private AudioSource[] _audioSource; //array of many sounds
 	private AudioSource _coinSound; // one sound
@@ -56,9 +58,19 @@ public class PlayerController : MonoBehaviour {
 		if (Input.GetKeyDown ("space") && Time.time > nextFire) { //the fire button will be the spacebar
 			
 			nextFire = Time.time + fireRate;
-			GameObject arrow= (GameObject) Instantiate (playerArrow); //Instantiate the bullet
+			GameObject arrow;		//arrow gameobject created
+
+			if (this._isFacingRight){
+			arrow= (GameObject) Instantiate (rightArrow); //If character is facing right, Instantiate the right bullet
+			}else {
+			arrow= (GameObject) Instantiate (leftArrow); //If character is facing left, Instantiate the left bullet
+			}
 			arrow.transform.position = arrowPosition.transform.position; //set initial bullet position
 		}
+
+		/*if (Input.GetKeyDown (KeyCode.R)){
+			Application.LoadLevel = (Application.loadedLevel);
+		}*/
 	}
 	
 	// Using Physics motion
@@ -151,6 +163,7 @@ public class PlayerController : MonoBehaviour {
 			this._transform.localScale = new Vector3 (-1f, 1f, 1f);
 		}
 	}
+
 }
 
 

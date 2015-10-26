@@ -1,14 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot/Unity Website
+//Last Modified: Oct,26,2015
+//Description: Spike Damage script 
 public class HurtPlayer : MonoBehaviour {
 
-	public SpriteRenderer spriteRenderer;
-	public Rigidbody2D rigidbody2D;
+	public int minusFullDmg=3;
+	public int lifeValue=3;
+
+	private PlayerCollider playerCollider; 
 
 	// Use this for initialization
 	void Start () {
-		//this.rigidbody2D = gameObject.GetComponent<Rigidbody2D> ();
+		GameObject playerColliderObject = GameObject.FindWithTag("Player"); // allows us to pull LifeCheck Method from the player collider script
+		if (playerColliderObject != null)
+		{
+			playerCollider = playerColliderObject.GetComponent<PlayerCollider>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -17,9 +27,13 @@ public class HurtPlayer : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D otherCollider){
-		if (otherCollider.gameObject.CompareTag ("Player")) {
-			Destroy (spriteRenderer);
-			Destroy (rigidbody2D);
+			if (otherCollider.tag == "Player") { 	//Spike Trigger, if its a player then ..
+				playerCollider.LifeCheck (minusFullDmg); // minus 3 life for spike damage 
+			}
 		}
-	}
+
 }
+
+
+
+

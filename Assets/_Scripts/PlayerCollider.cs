@@ -11,10 +11,14 @@ public class PlayerCollider : MonoBehaviour {
 	public int coinValue = 0;
 	public int lifeValue = 3;
 	public Text gameOverLabel;
-	public Text totalGoldLabel;
+	public Text totalCoinLabel;
 	public Text totalKillLabel;
 	public int minusDmg= 1;
 	public int coin =1;
+
+	public SpriteRenderer spriteRenderer;
+	public Rigidbody2D rigidbody2D;
+
 
 	//private AudioSource[] _audioSources; // an array of AudioSources
 	//private AudioSource _backgroundMusic, _splat;
@@ -22,7 +26,7 @@ public class PlayerCollider : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		this.gameOverLabel.enabled = false;			// this is for the GUI text making sure the gameover text is not displayed until its time
-		this.totalGoldLabel.enabled = false;
+		this.totalCoinLabel.enabled = false;
 		this.totalKillLabel.enabled = false;
 		//this._audioSources = this.GetComponents<AudioSource> ();
 	}
@@ -74,20 +78,21 @@ public class PlayerCollider : MonoBehaviour {
 	public void DisplayLife() // This displays the Life
 	{
 		lifeLabel.text = "Life: " + lifeValue;
-		if (this.lifeValue == 0) {
+		if (this.lifeValue <= 0) {
 			this._EndGame ();
 		}
 	}
 
 	public void _EndGame(){
-		Destroy (gameObject);
+		Destroy (this.spriteRenderer);
+		Destroy (this.rigidbody2D);
 		this.coinLabel.enabled = false;
 		this.lifeLabel.enabled = false;
 		this.killLabel.enabled = false;
 		this.gameOverLabel.enabled = true;
-		this.totalGoldLabel.enabled = true;
+		this.totalCoinLabel.enabled = true;
 		this.totalKillLabel.enabled = true;
-		this.totalGoldLabel.text = "Total Gold: " + this.coinValue;
+		this.totalCoinLabel.text = "Total Gold: " + this.coinValue;
 		this.totalKillLabel.text = "Total Kills: " + this.killValue;
 	}
 

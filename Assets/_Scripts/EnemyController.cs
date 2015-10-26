@@ -6,7 +6,8 @@ public class EnemyController : MonoBehaviour {
 	public float speed = 100f;
 	public Transform sightStart;	//LINECASTING - for example enemys flip when they reach the end of a platform and
 	public Transform sightEnd;		// not just fall off. 
-	
+	public int minusDmg;
+
 	//PRIVATE INSTANCES 
 	private Rigidbody2D _rigidbody2D; 
 	private Transform _transform;
@@ -14,12 +15,20 @@ public class EnemyController : MonoBehaviour {
 	
 	private bool _isGrounded = false;
 	private bool _isGroundAhead = false;
+
+	private PlayerCollider playerCollider; //again we need to reference a method
 	
 	// Use this for initialization
 	void Start () {
 		this._rigidbody2D = gameObject.GetComponent<Rigidbody2D> (); //referencing the rigidbody 2d and transform
 		this._transform = gameObject.GetComponent<Transform> ();
 		this._animator = gameObject.GetComponent<Animator> ();
+
+		GameObject playerColliderObject = GameObject.FindWithTag("Player"); // allows us to pull Life Check Method from the player collider script
+		if (playerColliderObject != null)
+		{
+			playerCollider = playerColliderObject.GetComponent<PlayerCollider>();
+		}
 	}
 	
 	// Update is called once per frame
@@ -48,8 +57,13 @@ public class EnemyController : MonoBehaviour {
 		if(otherCollider.gameObject.CompareTag ("Arrow")) {
 			Destroy (gameObject);
 		}
-	}
 
+		if (otherCollider.gameObject.CompareTag ("Player")) {
+			playerCollider.LifeCheck (minusDmg);
+			Destroy (gameObject);
+		}
+	}
+	
 	void OnCollisionStay2D(Collision2D otherCollider){				// check if grounded when idle CollisionStay
 		if (otherCollider.gameObject.CompareTag ("Ground")) {
 			this._isGrounded = true;

@@ -43,7 +43,13 @@ public class EnemyController : MonoBehaviour {
 			this._animator.SetInteger("AnimState", 0);
 		}
 	}
-	
+
+	void OnCollisionEnter2D(Collision2D otherCollider){
+		if(otherCollider.gameObject.CompareTag ("Arrow")) {
+			Destroy (gameObject);
+		}
+	}
+
 	void OnCollisionStay2D(Collision2D otherCollider){				// check if grounded when idle CollisionStay
 		if (otherCollider.gameObject.CompareTag ("Ground")) {
 			this._isGrounded = true;

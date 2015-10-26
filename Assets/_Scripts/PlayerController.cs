@@ -21,6 +21,10 @@ public class PlayerController : MonoBehaviour {
 
 	public VelocityRange velocityRange = new VelocityRange (300f, 1000f);
 
+	public GameObject playerArrow;
+	public GameObject arrowPosition;
+	public float fireRate;
+
 	//Private INSTANCES
 	private Rigidbody2D _rigidbody2D; 
 	private Transform _transform;
@@ -31,11 +35,22 @@ public class PlayerController : MonoBehaviour {
 	private bool _isGrounded = true;
 	private bool _isGroundBelow = false;	//LINECASTING 
 
+	private float nextFire;
+
 	// Use this for initialization
 	void Start () {
 		this._rigidbody2D = gameObject.GetComponent<Rigidbody2D> (); //referencing the rigidbody 2d and transform
 		this._transform = gameObject.GetComponent<Transform> ();
 		this._animator = gameObject.GetComponent<Animator> ();
+	}
+
+	void Update (){
+		if (Input.GetKeyDown ("space") && Time.time > nextFire) { //the fire button will be the spacebar
+			
+			nextFire = Time.time + fireRate;
+			GameObject arrow= (GameObject) Instantiate (playerArrow); //Instantiate the bullet
+			arrow.transform.position = arrowPosition.transform.position; //set initial bullet position	
+		}
 	}
 	
 	// Using Physics motion
@@ -95,10 +110,15 @@ public class PlayerController : MonoBehaviour {
 					
 				}
 			}
+
+			if (Input.GetKey ("space")){
+			if (this._isGrounded){
+				this._animator.SetInteger ("AnimState", 3);
+		}
+		}
 			//add force to push the player
 			this._rigidbody2D.AddForce (new Vector2 (forceX, forceY));
 		}
-	
 
 
 	void OnCollisionStay2D(Collision2D otherCollider){				// check if grounded CollisionStay
@@ -112,7 +132,7 @@ public class PlayerController : MonoBehaviour {
 		this._coinSound.Play ();
 		}
 	}*/
-
+	
 	//private methods
 	//flips the character when you face the other way.
 	private void _flip(){
@@ -123,5 +143,6 @@ public class PlayerController : MonoBehaviour {
 			this._transform.localScale = new Vector3 (-1f, 1f, 1f);
 		}
 	}
+
 }
 

@@ -45,12 +45,12 @@ public class PlayerCollider : MonoBehaviour {
 
 	public void ScoreCheck(int newScoreCheck) // This checks and updates the score
 	{
-		goldValue += newScoreCheck;
+		killValue += newScoreCheck;
 		DisplayScore ();
 	}
 
 	public void DisplayScore (){
-		goldLabel.text = "Gold: " + goldValue; // This displays the score
+		killLabel.text = "Kill: " + killValue; // This displays the score
 	}
 
 	public void LifeCheck (int newLifeCheck)//This checks and updates the life

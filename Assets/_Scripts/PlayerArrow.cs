@@ -41,8 +41,9 @@ public class PlayerArrow : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D otherGameObject) { //trigger to add points and destroy gameObject
 		if (otherGameObject.tag == "Enemy") {
-			Destroy (gameObject); 
-			playerCollider.ScoreCheck(addPoints); //add 100 points
+			Destroy (otherGameObject.gameObject);
+			Destroy (gameObject);
+			playerCollider.ScoreCheck(addPoints); //add 1 points
 		}
 		
 	}

@@ -49,7 +49,7 @@ public class PlayerController : MonoBehaviour {
 			
 			nextFire = Time.time + fireRate;
 			GameObject arrow= (GameObject) Instantiate (playerArrow); //Instantiate the bullet
-			arrow.transform.position = arrowPosition.transform.position; //set initial bullet position	
+			arrow.transform.position = arrowPosition.transform.position; //set initial bullet position
 		}
 	}
 	
@@ -113,12 +113,12 @@ public class PlayerController : MonoBehaviour {
 
 			if (Input.GetKey ("space")){
 			if (this._isGrounded){
-				this._animator.SetInteger ("AnimState", 3);
-		}
+				this._animator.SetInteger ("AnimState", 3);	
+				}
 		}
 			//add force to push the player
 			this._rigidbody2D.AddForce (new Vector2 (forceX, forceY));
-		}
+			}
 
 
 	void OnCollisionStay2D(Collision2D otherCollider){				// check if grounded CollisionStay
@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour {
 			this._isGrounded = true;
 		}
 	}
-
+	
 	/*void OnCollisionEnter2D(Collision2D otherCollider){
 		if (otherCollider.gameObject.CompareTag ("Coin")) {
 		this._coinSound.Play ();
@@ -143,6 +143,8 @@ public class PlayerController : MonoBehaviour {
 			this._transform.localScale = new Vector3 (-1f, 1f, 1f);
 		}
 	}
-
 }
+
+
+
 

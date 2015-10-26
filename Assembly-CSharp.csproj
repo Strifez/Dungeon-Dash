@@ -50,6 +50,7 @@
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledInitialShaderProperties.cs" />
      <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\TiledMap.cs" />
      <Compile Include="Assets\_Scripts\EnemyController.cs" />
+     <Compile Include="Assets\_Scripts\HurtPlayer.cs" />
      <Compile Include="Assets\_Scripts\PlayerArrow.cs" />
      <Compile Include="Assets\_Scripts\PlayerCollider.cs" />
      <Compile Include="Assets\_Scripts\PlayerController.cs" />

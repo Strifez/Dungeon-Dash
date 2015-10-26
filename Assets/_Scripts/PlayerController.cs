@@ -37,11 +37,19 @@ public class PlayerController : MonoBehaviour {
 
 	private float nextFire;
 
+	private AudioSource[] _audioSource; //array of many sounds
+	private AudioSource _coinSound; // one sound
+	private AudioSource _bkgSound;
+
 	// Use this for initialization
 	void Start () {
 		this._rigidbody2D = gameObject.GetComponent<Rigidbody2D> (); //referencing the rigidbody 2d and transform
 		this._transform = gameObject.GetComponent<Transform> ();
 		this._animator = gameObject.GetComponent<Animator> ();
+
+		this._audioSource = gameObject.GetComponents<AudioSource> ();
+		this._bkgSound = this._audioSource [0]; //assigning this to array element 0
+		this._coinSound = this._audioSource [1];
 	}
 
 	void Update (){
@@ -127,11 +135,11 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	
-	/*void OnCollisionEnter2D(Collision2D otherCollider){
+	void OnTriggerEnter2D(Collider2D otherCollider){
 		if (otherCollider.gameObject.CompareTag ("Coin")) {
 		this._coinSound.Play ();
 		}
-	}*/
+	}
 	
 	//private methods
 	//flips the character when you face the other way.

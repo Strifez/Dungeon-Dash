@@ -5,16 +5,16 @@ using UnityEngine.UI;
 public class PlayerCollider : MonoBehaviour {
 
 	public Text killLabel;
-	public Text goldLabel;
+	public Text coinLabel;
 	public Text lifeLabel;
 	public int killValue = 0;
-	public int goldValue = 0;
+	public int coinValue = 0;
 	public int lifeValue = 3;
 	public Text gameOverLabel;
 	public Text totalGoldLabel;
 	public Text totalKillLabel;
 	public int minusDmg= 1;
-	public int gold= 100;
+	public int coin =1;
 
 	//private AudioSource[] _audioSources; // an array of AudioSources
 	//private AudioSource _backgroundMusic, _splat;
@@ -33,8 +33,8 @@ public class PlayerCollider : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D otherGameObject) { //Pick Up Item trigger
-		if (otherGameObject.tag == "Gold") {
-			ScoreCheck (gold); //+ 100 points for picking up 
+		if (otherGameObject.tag == "Coin") {
+			CoinCheck (coin); //+ 100 points for picking up 
 		}
 		
 		if (otherGameObject.tag == "Enemy") { 	//Enemy Trigger
@@ -46,12 +46,24 @@ public class PlayerCollider : MonoBehaviour {
 	public void ScoreCheck(int newScoreCheck) // This checks and updates the score
 	{
 		killValue += newScoreCheck;
-		DisplayScore ();
+		DisplayKillScore ();
 	}
 
-	public void DisplayScore (){
+	public void DisplayKillScore (){
 		killLabel.text = "Kill: " + killValue; // This displays the score
+
 	}
+
+	public void CoinCheck(int newScoreCheck) // This checks and updates the score
+	{
+		coinValue += newScoreCheck;
+		DisplayCoinScore ();
+	}
+	
+	public void DisplayCoinScore (){
+		coinLabel.text = "Coin: " + coinValue; // This displays the score
+	}
+
 
 	public void LifeCheck (int newLifeCheck)//This checks and updates the life
 	{
@@ -69,13 +81,13 @@ public class PlayerCollider : MonoBehaviour {
 
 	public void _EndGame(){
 		Destroy (gameObject);
-		this.goldLabel.enabled = false;
+		this.coinLabel.enabled = false;
 		this.lifeLabel.enabled = false;
 		this.killLabel.enabled = false;
 		this.gameOverLabel.enabled = true;
 		this.totalGoldLabel.enabled = true;
 		this.totalKillLabel.enabled = true;
-		this.totalGoldLabel.text = "Total Gold: " + this.goldValue;
+		this.totalGoldLabel.text = "Total Gold: " + this.coinValue;
 		this.totalKillLabel.text = "Total Kills: " + this.killValue;
 	}
 

@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour {
 	private AudioSource[] _audioSource; //array of many sounds
 	private AudioSource _coinSound; // one sound
 	private AudioSource _bkgSound;
+	private AudioSource _jumpSound;
 
 	// Use this for initialization
 	void Start () {
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour {
 		this._audioSource = gameObject.GetComponents<AudioSource> ();
 		this._bkgSound = this._audioSource [0]; //assigning this to array element 0
 		this._coinSound = this._audioSource [1];
+		this._jumpSound = this._audioSource [2];
 	}
 
 	void Update (){
@@ -68,9 +70,9 @@ public class PlayerController : MonoBehaviour {
 			arrow.transform.position = arrowPosition.transform.position; //set initial bullet position
 		}
 
-		/*if (Input.GetKeyDown (KeyCode.R)){
-			Application.LoadLevel = (Application.loadedLevel);
-		}*/
+		if (Input.GetKeyDown (KeyCode.R)){  //press R to reload the level main.
+			Application.LoadLevel("main");
+		}
 	}
 	
 	// Using Physics motion
@@ -116,12 +118,14 @@ public class PlayerController : MonoBehaviour {
 				if (this._isGrounded) {
 					// 2 was set to Player Jump Animation
 					this._animator.SetInteger ("AnimState", 2);
+					
 					//line cast added so the player does not shoot up into the air when its touching a wall.
 					this._isGroundBelow = Physics2D.Linecast(this.sightStart.position, this.sightEnd.position, 1 << LayerMask.NameToLayer ("Ground")); 
 					Debug.DrawLine(this.sightStart.position,this.sightEnd.position); //draws a line in debug mode to see if linecasting works
 
 					//if there is ground below then allow the jump and make the player not grounded anymore.
 					if(_isGroundBelow == true){ 
+					this._jumpSound.Play();
 					if (absVelY < this.velocityRange.vMax) {
 						forceY = this.jump;
 						this._isGrounded = false;
@@ -133,7 +137,7 @@ public class PlayerController : MonoBehaviour {
 
 			if (Input.GetKey ("space")){
 			if (this._isGrounded){
-				this._animator.SetInteger ("AnimState", 3);	
+				this._animator.SetInteger ("AnimState", 3);
 				}
 		}
 			//add force to push the player

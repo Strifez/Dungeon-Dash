@@ -13,6 +13,7 @@ public class PlayerCollider : MonoBehaviour {
 	public Text gameOverLabel;
 	public Text totalCoinLabel;
 	public Text totalKillLabel;
+	public Text restartText;
 	public int minusDmg= 1;
 	public int coin =1;
 
@@ -28,6 +29,7 @@ public class PlayerCollider : MonoBehaviour {
 		this.gameOverLabel.enabled = false;			// this is for the GUI text making sure the gameover text is not displayed until its time
 		this.totalCoinLabel.enabled = false;
 		this.totalKillLabel.enabled = false;
+		this.restartText.enabled = false;
 		//this._audioSources = this.GetComponents<AudioSource> ();
 	}
 	
@@ -92,6 +94,7 @@ public class PlayerCollider : MonoBehaviour {
 		this.gameOverLabel.enabled = true;
 		this.totalCoinLabel.enabled = true;
 		this.totalKillLabel.enabled = true;
+		this.restartText.enabled = true;
 		this.totalCoinLabel.text = "Total Gold: " + this.coinValue;
 		this.totalKillLabel.text = "Total Kills: " + this.killValue;
 	}

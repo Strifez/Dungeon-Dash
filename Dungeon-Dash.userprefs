@@ -1,12 +1,14 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\PlayerCollider.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\_Scripts\PlayerController.cs">
     <Files>
-      <File FileName="Assets\_Scripts\PlayerCollider.cs" Line="32" Column="1" />
-      <File FileName="Assets\_Scripts\PlayerController.cs" Line="72" Column="52" />
-      <File FileName="Assets\_Scripts\EnemyController.cs" Line="1" Column="1" />
+      <File FileName="Assets\_Scripts\PlayerCollider.cs" Line="97" Column="35" />
+      <File FileName="Assets\_Scripts\PlayerController.cs" Line="81" Column="21" />
+      <File FileName="Assets\_Scripts\EnemyController.cs" Line="19" Column="78" />
       <File FileName="Assets\_Scripts\HurtPlayer.cs" Line="1" Column="1" />
       <File FileName="Assets\_Scripts\PlayButton.cs" Line="1" Column="1" />
+      <File FileName="g:\GitHub Repo\Dungeon-Dash-2D-Platformer\Dungeon-Dash\Assets\Tiled2Unity\Scripts\Editor\ImportTiled2Unity.Mesh.cs" Line="1" Column="1" />
+      <File FileName="..\..\Alien-Blast-2D-Shooter\AB Shooter\Assets\_Scripts\EnemyController.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

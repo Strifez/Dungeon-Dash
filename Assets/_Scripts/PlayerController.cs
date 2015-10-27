@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot/Unity Website
+//Last Modified: Oct,26,2015
+//Description: Player Controller Script 
+
 [System.Serializable]
 public class VelocityRange {
 	public float vMin, vMax;
@@ -98,7 +103,7 @@ public class PlayerController : MonoBehaviour {
 						this._isFacingRight = true;
 						this._flip ();
 					}
-				} else if (this._movingValue < 0) {
+				} else if (this._movingValue < 0) { // if the character is moving left do this.
 					// move left
 					if (absVelX < this.velocityRange.vMax) {
 						forceX = -this.speed;
@@ -135,7 +140,7 @@ public class PlayerController : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetKey ("space")){
+			if (Input.GetKey ("space")){ // animation for player shooting
 			if (this._isGrounded){
 				this._animator.SetInteger ("AnimState", 3);
 				}
@@ -151,7 +156,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 	
-	void OnTriggerEnter2D(Collider2D otherCollider){
+	void OnTriggerEnter2D(Collider2D otherCollider){				// check if player hits coin if so play sound 
 		if (otherCollider.gameObject.CompareTag ("Coin")) {
 		this._coinSound.Play ();
 		}
@@ -161,7 +166,7 @@ public class PlayerController : MonoBehaviour {
 	//flips the character when you face the other way.
 	private void _flip(){
 	if (this._isFacingRight) {
-			this._transform.localScale = new Vector3 (1f, 1f, 1f);
+			this._transform.localScale = new Vector3 (1f, 1f, 1f); 
 		
 		} else {
 			this._transform.localScale = new Vector3 (-1f, 1f, 1f);

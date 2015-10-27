@@ -5,11 +5,14 @@ using System.Collections;
 //Source: Professor Tom's Mail Pilot/Unity Website
 //Last Modified: Oct,26,2015
 //Description: Spike Damage script 
+
 public class HurtPlayer : MonoBehaviour {
 
+	//Public Instances
 	public int minusFullDmg=3;
 	public int lifeValue=3;
 
+	//Private Instances
 	private PlayerCollider playerCollider; 
 
 	// Use this for initialization

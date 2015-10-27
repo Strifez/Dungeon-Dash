@@ -2,8 +2,14 @@
 using System.Collections;
 using UnityEngine.UI;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot/Unity Website
+//Last Modified: Oct,26,2015
+//Description: Script dealing with UI and Scoring
+
 public class PlayerCollider : MonoBehaviour {
 
+	//Public Instances
 	public Text killLabel;
 	public Text coinLabel;
 	public Text lifeLabel;
@@ -19,10 +25,6 @@ public class PlayerCollider : MonoBehaviour {
 
 	public SpriteRenderer spriteRenderer;
 	public Rigidbody2D rigidbody2D;
-
-
-	//private AudioSource[] _audioSources; // an array of AudioSources
-	//private AudioSource _backgroundMusic, _splat;
 
 	// Use this for initialization
 	void Start () {

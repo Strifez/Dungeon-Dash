@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot
+//Last Modified: Oct,26,2015
+//Description: Play Button Interaction 
+
 public class PlayButton : MonoBehaviour {
 	
 	// Use this for initialization

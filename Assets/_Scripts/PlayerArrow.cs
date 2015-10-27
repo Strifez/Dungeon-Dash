@@ -1,10 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot/Unity Website
+//Last Modified: Oct,26,2015
+//Description: Player Arrow Script
+
 public class PlayerArrow : MonoBehaviour {
+
 	//Public Variables
 	public int addPoints; // adding points
 	public float speed;
+
 	//private instances
 	private PlayerCollider playerCollider; //reference purposes
 

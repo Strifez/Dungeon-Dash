@@ -1,6 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+//Jason Huang 300818592
+//Source: Professor Tom's Mail Pilot
+//Last Modified: Oct,26,2015
+//Description: Script that makes the Enemy move and patrol and collision detection
+
 public class EnemyController : MonoBehaviour {
 	//PUBLIC INSTANCES
 	public float speed = 100f;
